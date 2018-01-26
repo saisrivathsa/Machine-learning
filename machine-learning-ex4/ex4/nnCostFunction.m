@@ -99,9 +99,12 @@ J = J + regularised_cost;
 % Backpropagation
 % --------Small delta
     delta3 = A3 - tempY; % m*num_labels
-    Z2 = [ ones(size(Z2,1),1) Z2];    
-    delta2 = (delta3*Theta2) .* sigmoidGradient(Z2);  
-    delta2 = delta2(:, 2:end);
+
+    temp = (delta3*Theta2);
+    temp = temp(:, 2:end)
+    % Removing bias term
+    delta2 =  temp.* sigmoidGradient(Z2);  
+
 
 % ----- Big delta
 
